@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Optimize Routing</title>
+    <script src="{{ url_for('static', filename='script.js')}}"></script>
+</head>
+<body>
+    <h1>Optimize Routing</h1>
+    <form action="/optimize_routing" method="post" enctype="multipart/form-data">
+        <label for="inputfile">Input File:</label>
+        <input type="file" name="inputfile" id="inputfile" accept=".xlsx"><br><br>
+
+        <label for="json_result">JSON Result:</label>
+        <input type="file" name="json_result" id="json_result" accept=".json"><br><br>
+
+        <label for="vehicle_num">Vehicle Number:</label>
+        <input type="number" name="vehicle_num" id="vehicle_num" required><br><br>
+
+        <input onclick="success()" type="submit" value="Optimize Routing">
+
+    </form>
+{#    <button onclick="location.href='/contacts'" type="button">Go to Contacts</button>#}
+</body>
+</html>

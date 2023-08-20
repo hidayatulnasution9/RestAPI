@@ -1,0 +1,36 @@
+version: '3.7'
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"  # Change to port 5432
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on:
+      - db
+    ports:
+      - "85:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=123456789
+    restart: unless-stopped
+  web:
+    build:
+      context: .
+    command: sh -c "python -m flask run --host=0.0.0.0 --port=5000"  # Change host to "db"
+    container_name: mywebsite
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=database-1.clnvwvkdhb01.ap-southeast-1.rds.amazonaws.com  # Change DB_HOST to "db"
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASS=postgres

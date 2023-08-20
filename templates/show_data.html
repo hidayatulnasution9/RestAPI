@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show Data</title>
+</head>
+<body>
+    <h1>Show Data</h1>
+
+    <h2>Input Data</h2>
+    {% if input_data %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                    <!-- Add more columns as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, row in input_data.iterrows() %}
+                    <tr>
+                        <td>{{ row['Column 1'] }}</td>
+                        <td>{{ row['Column 2'] }}</td>
+                        <!-- Add more columns as needed -->
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No input data available.</p>
+    {% endif %}
+
+    <h2>Result Data</h2>
+    {% if result_data %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Vehicle ID</th>
+                    <th>Route</th>
+                    <th>Distance</th>
+                    <th>Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for route in result_data.routes %}
+                    <tr>
+                        <td>{{ route.vehicle_id }}</td>
+                        <td>{{ route.route }}</td>
+                        <td>{{ route.distance }}</td>
+                        <td>{{ route.duration }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p>Total Distance: {{ result_data.total_distance }}</p>
+        <p>Total Duration: {{ result_data.total_duration }}</p>
+    {% else %}
+        <p>No result data available.</p>
+    {% endif %}
+
+    <h2>Vehicle Number: {{ vehicle_num }}</h2>
+    <a href="http://localhost:3000/contacts" target="_self"><button>Show Contacts</button></a>#}
+</body>
+</html>
